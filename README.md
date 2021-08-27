@@ -20,13 +20,13 @@ Function           | Description
 Using Pkg.jl:
 ```julia
 julia> using Pkg
-julia> Pkg.add(url="https://github.com/danphenderson/UncNLPTestSet.jl")
+julia> Pkg.add(url="https://github.com/danphenderson/UncNLPrograms.jl")
 ```  
 
 Or from the REPL:
 ```julia
 julia> ]
-pkg> add "https://github.com/danphenderson/UncNLPTestSet.jl"
+pkg> add "https://github.com/danphenderson/UncNLPrograms.jl"
 ``` 
 
 
