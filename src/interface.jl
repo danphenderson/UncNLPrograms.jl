@@ -6,6 +6,8 @@ The interface should feel familiar to interacting with NLPModels.jl,
 apart of the JuliaSmoothOptimizers orginization.
 """
 
+
+
 macro lencheck(l, vars...)
     exprs = Expr[]
     for var in vars
