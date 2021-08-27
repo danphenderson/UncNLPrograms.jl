@@ -8,6 +8,8 @@ apart of the JuliaSmoothOptimizers orginization.
 
 
 
+
+
 macro lencheck(l, vars...)
     exprs = Expr[]
     for var in vars
