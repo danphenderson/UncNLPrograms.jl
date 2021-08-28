@@ -46,7 +46,7 @@ mutable struct UncProgram
     end 
 end
 
-
+include("interface.jl")
 
 """
     UncNLPrograms.TestSet
