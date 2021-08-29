@@ -32,25 +32,34 @@ pkg> add "https://github.com/danphenderson/UncNLPrograms.jl"
 
 ## Simple UncNLPrograms Use Case
 ```julia
-# Lists name and dimension in the programs enviroment
+# Lists the name and dimension in the programs enviroment
 Programs() 
 
+
 # Store a reference to a program, as specified by the name given in Programs()
+# programs are named as their origional .SIF file names
 nlp = SelectProgram("SROSENBR")
 
+# Returns the default itterate corresponding to the CUTEst problem in 20 dimensions
 adjdim!(nlp, 20)
 
-obj(nlp, nlp.x0)
+# Returns $f(x))$ at $x$ = nlp.$x0$, 
+# where nlp.x0 is a reference to the default itterate
+obj(nlp, nlp.x0) 
 
+# Returns $\nabla x f(x))$ at $x$ = nlp.$x0$ 
 grad(nlp, nlp.x0)
 
+# Returns the tuple $(\nabla f(x),  \nabla f(x))$ at $x$ = nlp.$x0$ 
 objgrad(nlp, nlp.x0)
-    
+
+# The jacobian of $\nabla f$ at $x$ = nlp.$x0$ using ForwardDiff.jl
 hessAD(nlp, nlp.x0)
 ```
 
 ## Development Items
-1. Determine a suitable home for UncNLPrograms in the Julia ecosystem and/or utilize an existing structure (e.g. NLPModels.jl, JuMP.jl).
+1. Determine a suitable home for UncNLPrograms in the Julia ecosystem and/or utilize an existing structure (i.e. build upon NLPModels, JuMP).
 2. Optimize each programs implementation.
 3. Check off each item in the Precompile warning list.
-4. Overload Base.show(nlp)
+4. Overload Base.show(::UncProgram)
+5. Confirm julia defined f and $\nabla^2 f(x)$ math the formula in Buckley's report.
