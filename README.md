@@ -3,7 +3,7 @@ A testing enviroment containing high-dimensional, nonlinear, and unconstrained o
 The UncNLPrograms is a subset of CUTEst, the latest evolution in the _Constrained and Unconstrained Testing Enviroment_. Each program defines an initial dimension, iterate, an objective function and it's corresponding gradient.
 
 The purpose of this testing enviroment is to facilitate numerical experiements for Optimization schemes utilizing Automatic Differentation.
-The UncNLPrograms interface resembles `NLPModels.jl` from the JuliaSmoothOptimizers orginization.
+The UncNLPrograms interface resembles `NLPModels` package from the JuliaSmoothOptimizers orginization.
 
 ## Interface
 Function           | Description
@@ -34,7 +34,6 @@ pkg> add "https://github.com/danphenderson/UncNLPrograms.jl"
 ```julia
 # Lists the name and dimension in the programs enviroment
 Programs() 
-
 
 # Store a reference to a program, as specified by the name given in Programs()
 # programs are named as their origional .SIF file names
