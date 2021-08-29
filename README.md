@@ -58,7 +58,7 @@ hessAD(nlp, nlp.x0)
 
 ## Development Items
 1. Determine a suitable home for UncNLPrograms in the Julia ecosystem and/or utilize an existing structure (i.e. build upon NLPModels, JuMP).
-2. Optimize each programs implementation.
+2. Optimize programs' implementation.
 3. Check off each item in the Precompile warning list.
 4. Overload Base.show(::UncProgram)
 5. Confirm julia defined f and $\nabla^2 f(x)$ math the formula in Buckley's report.
