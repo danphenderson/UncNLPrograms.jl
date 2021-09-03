@@ -50,7 +50,7 @@ init = (n::Int=5000) -> begin
 	n < 2 && @warn("ARWHEAD: number of variables must be ≥ 2")
 	n = max(n, 2)
     
-    return n, -1.0*ones(n)
+    return n, -1.0ones(n)
 end
 
 TestSet["NONDIA"] = UncProgram("NONDIA", f, g!, fg!, init)

@@ -1,9 +1,8 @@
-using UNLPrograms
-using Test
-using UncNLPTestSet, Test, CUTEst, LinearAlgebra, Printf
+using UncNLPrograms
+using Test, CUTEst, LinearAlgebra, Printf
 import NLPModels as jo
 
-for nlp ∈ values(TestSet)
+for nlp ∈ values(UncNLPrograms.TestSet)
     @printf "\nTesting %s to CUTEst.jl Model at default iterate:\n" nlp.name
     qt_nlp = CUTEstModel(nlp.name) 
     qt_x0  = qt_nlp.meta.x0

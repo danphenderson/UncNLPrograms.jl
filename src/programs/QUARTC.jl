@@ -14,32 +14,28 @@
 #
 # Daniel Henderson, 08/2021   
 
-f = (x) -> begin
-	fx = 0.0
-	for i in firstindex(x):lastindex(x)
-		fx += (x[i] - i)^4
-	end
-    return fx
+f = x -> begin
+    return sum((x[i] - i)^4 for i in 1:lastindex(x))	
 end
 
 g! = (g, x) -> begin
-	for i in firstindex(x):lastindex(x)
-		g[i] = 4(x[i] - i)^3
+	@fastmath for i in 1:lastindex(x)
+		@inbounds g[i] = 4(x[i] - i)^3
 	end
     return g
 end
 
 fg! = (g, x) -> begin
 	fx = 0.0
-	for i in firstindex(x):lastindex(x)
-		fx  += (x[i] - i)^4
-		g[i] = 4(x[i] - i)^3
+	@fastmath for i in 1:lastindex(x)
+		@inbounds fx  += (x[i] - i)^4
+		@inbounds g[i] = 4(x[i] - i)^3
 	end
     return fx, g
 end
 
 init = (n::Int=5000) -> begin
-    return n, 2.0*ones(n)
+    return n, 2.0ones(n)
 end
 
 TestSet["QUARTC"] = UncProgram("QUARTC",  f, g!, fg!, init)
