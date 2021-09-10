@@ -21,22 +21,22 @@
 #
 # Daniel Henderson, 08/2021   
 
-f = x -> begin
+# f = x -> begin
 
-end
+# end
 
-g! = (g, x) -> begin
-	n = lastindex(x)
-end
+# g! = (g, x) -> begin
+# 	n = lastindex(x)
+# end
 
-fg! = (g, x) -> begin
+# fg! = (g, x) -> begin
 
-end
+# end
 
-init = (n::Int=5000) -> begin
-	n < 2 && @warn("FREUROTH: number of variables must be ≥ 2")
-	n = max(n, 2)
-    return n, 
-end
+# init = (n::Int=5000) -> begin
 
-TestSet["FREUROTH"] = UncProgram("FREUROTH",  f, g!, fg!, init)
+# end
+
+# @warn "FRUEROTH needs to be implemented"
+
+# TestSet["FREUROTH"] = UncProgram("FREUROTH",  f, g!, fg!, init)

@@ -113,6 +113,7 @@ function Programs()
     for nlp in values(TestSet)
         @printf "%s with dimension %d\n" nlp.name nlp.n
     end
+    return values(TestSet)
 end
 
 
