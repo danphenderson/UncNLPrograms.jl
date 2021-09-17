@@ -29,14 +29,12 @@ module UncNLPrograms
 using LinearAlgebra, Printf, ForwardDiff
 
 
-
-
 """
     UncProgram
 
 A base parent type of each unconstrained non-linear program
 """
-mutable struct UncProgram
+struct UncProgram
     name::String
     f::Function
     g!::Function
@@ -47,6 +45,9 @@ mutable struct UncProgram
     function UncProgram(name, f, g!, fg!, init)
         n, x0 = init()
         new(name, f, g!, fg!, init, n, x0)
+    end 
+    function UncProgram(nlp::UncProgram, n, x0)
+        new(nlp.name, nlp.f, nlp.g!, nlp.fg!, nlp.init, n, x0)
     end 
 end
 

@@ -6,10 +6,7 @@ The interface should feel familiar to interacting with NLPModels.jl,
 apart of the JuliaSmoothOptimizers orginization.
 """
 
-
-
-
-
+# macro from NLPModels.jl
 macro lencheck(l, vars...)
     exprs = Expr[]
     for var in vars
@@ -21,7 +18,8 @@ macro lencheck(l, vars...)
       ))
     end
     Expr(:block, exprs...)
-  end
+end
+
 
 """
     obj
@@ -29,7 +27,7 @@ macro lencheck(l, vars...)
 ```math
 f(x)
 ````
-Evaluate the objective function at a point x.
+Evaluate the objective function at the point x.
 """
 function obj(nlp::UncProgram, x::AbstractArray{<:Real})
     @lencheck nlp.n x
@@ -59,7 +57,7 @@ end
 f(x), ∇f(x)
 ```
 Evaluate the gradient and it's objective function at a point x, 
-by a iterating over the dimesions once.
+by a iterating over the dimesions in an economical fashian.
 """
 function objgrad(nlp::UncProgram, x::AbstractArray{<:Real})
     @lencheck nlp.n x
@@ -96,8 +94,9 @@ Change the dimensions of a specified problem in the TestSet
 function adjdim!(nlp::UncProgram, n::Int)
     @warn "adjdim!: This operation has not been tested to gaurentee similair output"
     n, x0 = nlp.init(n)
-    nlp.n = n
-    nlp.x0 = x0
+    nlp = UncProgram(nlp, n, x0)
+    TestSet[nlp.name] = nlp
+    return nlp
 end
 
 
@@ -113,8 +112,8 @@ function Programs()
     for nlp in values(TestSet)
         @printf "%s with dimension %d\n" nlp.name nlp.n
     end
-    return values(TestSet)
-end
+    return keys(TestSet)
+end # changes must be propogated to gHSTest
 
 
 """
@@ -125,9 +124,10 @@ f(x), ∇f(x)
 ```
 Returns an instance of UncProgram. 
 """
-function SelectProgram(key::String)
+function SelectProgram(key::String; n=nothing)
     if key ∈ keys(TestSet)
+        !isa(n, Nothing) && adjdim!(TestSet[key], n)
         return TestSet[key]
     end
-    @warn "The program $s is not in the testing enviroment" 
+    #@warn "The program $s is not in the testing enviroment" 
 end
