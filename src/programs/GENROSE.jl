@@ -1,4 +1,3 @@
-@warn "TODO: Implement GENROSE"
 #    Problem : 
 #    *********	 
 #   The generalized Rosenbrock function.
