@@ -19,17 +19,17 @@ f = x -> begin
 end
 
 g! = (g, x) -> begin
-	@fastmath for i in 1:lastindex(x)
-		@inbounds g[i] = 4(x[i] - i)^3
+	for i in 1:lastindex(x)
+		g[i] = 4(x[i] - i)^3
 	end
     return g
 end
 
 fg! = (g, x) -> begin
 	fx = 0.0
-	@fastmath for i in 1:lastindex(x)
-		@inbounds fx  += (x[i] - i)^4
-		@inbounds g[i] = 4(x[i] - i)^3
+	for i in 1:lastindex(x)
+		fx  += (x[i] - i)^4
+		g[i] = 4(x[i] - i)^3
 	end
     return fx, g
 end

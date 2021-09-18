@@ -1,42 +1,47 @@
 @warn "TODO: Implement GENROSE"
-# #    Problem : GROUP A
-# #    *********	 
-# #    A simple quartic function.
-# #
-# #    Origonal SIF Source: problem 157 (p. 87) in
-# #    A.R. Buckley,
-# #   "Test functions for unconstrained minimization",
-# #    TR 1989CS-3, Mathematics, statistics and computing centre,
-# #    Dalhousie University, Halifax (CDN), 1989.
-# #
-# #    QUARTC.SIF classification OUR2-AN-V-0
-# #
-# #    Number of variables is variable
-# #
-# # Daniel Henderson, 08/2021   
+#    Problem : 
+#    *********	 
+#   The generalized Rosenbrock function.
+#
+#   Source: problem 5 in
+#   S. Nash,
+#   "Newton-type minimization via the Lanczos process",
+#
+#   SIF input: Nick Gould, Oct 1992.
+#              minor correction by Ph. Shott, Jan 1995.
+#
+#   classification SUR2-AN-V-0
+#
+#   Number of variables
+#
+#
+# Daniel Henderson, 08/2021   
 
-# f = x -> begin
-#     return sum((x[i] - i)^4 for i in 1:lastindex(x))	
-# end
 
-# g! = (g, x) -> begin
-# 	@fastmath for i in 1:lastindex(x)
-# 		@inbounds g[i] = 4(x[i] - i)^3
-# 	end
-#     return g
-# end
 
-# fg! = (g, x) -> begin
-# 	fx = 0.0
-# 	@fastmath for i in 1:lastindex(x)
-# 		@inbounds fx  += (x[i] - i)^4
-# 		@inbounds g[i] = 4(x[i] - i)^3
-# 	end
-#     return fx, g
-# end
+f = x -> begin
+    return 100 * sum((x[i + 1] - x[i]^2)^2 for i = 1:lastindex(x) - 1) + sum((x[i] - 1.0)^2 for i = 1:lastindex(x) - 1)
+end
 
-# init = (n::Int=5000) -> begin
-#     return n, 2.0ones(n)
-# end
+g! = (g, x) -> begin
+	N = lastindex(x)
+	g[1] = -400 * x0[1] * (x0[2] - x0[1]^2)
+	α    =  200 * (x[2] - x[1]^2)
+	for i in 2:N-1
+		g[i] =  -400 * x[i] * (x[i+1] - x[i]^2) + 2 * (x[i] - 1.0) + α
+		α    =   200 * (x[i+1] - x[i]^2)
+	end
+	g[N] = 200*(x[N] - x[N-1]^2)^2 + (x[N] - 1)^2
+	return g
+end
 
-# TestSet["QUARTC"] = UncProgram("QUARTC",  f, g!, fg!, init)
+fg! = (g, x) -> begin
+	@warn "Genrose fg! not Implemented"
+end
+
+init = (n::Int=500) -> begin
+	x0 = [j/(n+1) for j in 1:n]
+	return n, x0
+end
+
+TestSet["GENROSE"] = UncProgram("GENROSE",  f, g!, fg!, init)

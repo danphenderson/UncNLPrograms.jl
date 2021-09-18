@@ -92,7 +92,7 @@ f(x), ∇f(x)
 Change the dimensions of a specified problem in the TestSet
 """
 function adjdim!(nlp::UncProgram, n::Int)
-    @warn "adjdim!: This operation has not been tested to gaurentee similair output"
+    #@warn "adjdim!: This operation has not been tested to gaurentee similair output"
     n, x0 = nlp.init(n)
     nlp = UncProgram(nlp, n, x0)
     TestSet[nlp.name] = nlp
@@ -129,5 +129,5 @@ function SelectProgram(key::String; n=nothing)
         !isa(n, Nothing) && adjdim!(TestSet[key], n)
         return TestSet[key]
     end
-    #@warn "The program $s is not in the testing enviroment" 
+    @warn "The program $s is not in the testing enviroment" 
 end
