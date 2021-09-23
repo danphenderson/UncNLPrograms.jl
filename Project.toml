@@ -1,7 +1,7 @@
 name = "UncNLPrograms"
 uuid = "5e2b213f-86d3-459f-a7bf-7361e1159e4f"
-authors = ["Daniel Henderson dphender@mtu.edu & contributors"]
 version = "0.1.0"
+authors = ["Daniel Henderson dphender@mtu.edu & contributors"]
 
 [deps]
 ForwardDiff = "f6369f11-7733-5829-9624-2563aa707210"
