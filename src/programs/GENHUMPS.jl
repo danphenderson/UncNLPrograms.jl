@@ -14,7 +14,6 @@
 #    Number of variables is variable
 #
 # Daniel Henderson, 08/2021  
-
 f = (x) -> begin
 	fx = 0.0
     ζ = 20.0
@@ -54,7 +53,7 @@ end
 init = (n::Int=5000) -> begin
 	n < 2 && @warn("GENHUMPS: number of variables must be ≥ 2")
 	n = max(n, 2)
-    x0 = -506.2*ones(5000)
+    x0 = -506.2*ones(n)
     x0[1] = -506 
     return n, x0
 end

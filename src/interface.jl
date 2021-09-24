@@ -129,5 +129,5 @@ function SelectProgram(key::String; n=nothing)
         !isa(n, Nothing) && adjdim!(TestSet[key], n)
         return TestSet[key]
     end
-    @warn "The program $s is not in the testing enviroment" 
+    @warn "The program $key is not in the testing enviroment" 
 end
