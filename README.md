@@ -1,9 +1,14 @@
-# UncNLPrograms (Currently Under Development)
-A testing enviroment containing high-dimensional, nonlinear, and unconstrained optimization problems implemented in native Julia.
-The UncNLPrograms is a subset of CUTEst, the latest evolution in the _Constrained and Unconstrained Testing Enviroment_. Each program defines an initial dimension, iterate, an objective function and its corresponding gradient.
+# UncNLPrograms
+A set of high-dimensional, nonlinear, and unconstrained optimization problems implemented in
+native Julia to test solvers using Automatic/Algorithmic Differentiation.
 
-The purpose of this testing enviroment is to facilitate numerical experiements for Optimization schemes utilizing Automatic Differentation.
-The UncNLPrograms interface resembles `NLPModels` package from the JuliaSmoothOptimizers orginization.
+The UncNLPrograms is a subset of CUTEst, the latest evolution in the _Constrained and 
+Unconstrained Testing Enviroment_. Each program defines an initial dimension, iterate, 
+an objective function and its corresponding gradient.
+
+The UncNLPrograms interface was inspired by the `NLPModels` package from
+the JuliaSmoothOptimizers orginization.
+
 
 ## Interface
 Function           | Description
